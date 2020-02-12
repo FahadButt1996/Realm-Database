@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, GenericAdapterCa
         val result = realm.where(User::class.java).findAllSorted("name")
 
         for (data in result) {
-            list.add(User(data.name, data.email))
+            list.add(User(data.name, data.email , data.age , data.cnic , data.nationality))
         }
         setDataToRecyclerview(list)
 
@@ -82,6 +82,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, GenericAdapterCa
                 val user = realm?.createObject(User::class.java)
                 user?.name = username.text.toString()
                 user?.email = email.text.toString()
+                user?.age = "19"
+                user?.cnic = "1234567890"
+                user?.nationality = "Pakistan"
             }
         }, object : Realm.Transaction.OnSuccess {
             override fun onSuccess() {

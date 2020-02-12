@@ -12,7 +12,7 @@ import com.example.realmdatabase.database.User
 class UserAdapter(
     var list: List<User>,
     var context: Context,
-    var genericAdapterCallback : GenericAdapterCallback
+    var genericAdapterCallback: GenericAdapterCallback
 ) :
     RecyclerView.Adapter<UserAdapter.StatusViewHolder>() {
 
@@ -24,9 +24,16 @@ class UserAdapter(
     override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
         holder.username.setText(list.get(position).name)
         holder.email.setText(list.get(position).email)
+        holder.age.setText(list.get(position).age)
+        holder.cnic.setText(list.get(position).cnic)
+        if (!list.get(position).nationality.isNullOrEmpty()) {
+            holder.nationality.setText(list.get(position).nationality)
+        } else {
+            holder.nationality.setText("--")
+        }
 
-        holder.delete.setOnClickListener{
-            genericAdapterCallback.getClickedObject(list.get(position) , position , "User")
+        holder.delete.setOnClickListener {
+            genericAdapterCallback.getClickedObject(list.get(position), position, "User")
         }
     }
 
@@ -41,6 +48,15 @@ class UserAdapter(
             itemView.findViewById(R.id.child_name)
         val email: TextView =
             itemView.findViewById(R.id.child_email)
+
+        val age: TextView =
+            itemView.findViewById(R.id.child_age)
+
+        val cnic: TextView =
+            itemView.findViewById(R.id.child_cnin)
+
+        val nationality: TextView =
+            itemView.findViewById(R.id.child_nationality)
 
         val delete: Button =
             itemView.findViewById(R.id.child_delete)

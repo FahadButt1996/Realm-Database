@@ -8,8 +8,8 @@ fun initializeRealm(context: Context) {
     Realm.init(context)
     val realmConfig = RealmConfiguration.Builder()
         .name("Testing.realm")
-        .schemaVersion(0)
-        .deleteRealmIfMigrationNeeded()
+        .schemaVersion(2)
+        .migration(RealmDBMigration())
         .build()
     Realm.setDefaultConfiguration(realmConfig)
 }
